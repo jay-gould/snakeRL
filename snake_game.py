@@ -34,10 +34,13 @@ BLOCK_SIZE = 20
 
 class SnakeGameAI:
     
-    def __init__(self, w=640, h=480, speed = 60):
+    def __init__(self, w=640, h=480, speed = 60, reward_food = 10, reward_death = -10, reward_step = 0):
         self.w = w
         self.h = h
         self.speed = speed
+        self.reward_food = reward_food
+        self.reward_death = reward_death
+        self.reward_step = reward_step
         # init display
         self.display = pygame.display.set_mode((self.w, self.h))
         pygame.display.set_caption('Snake')
@@ -81,17 +84,17 @@ class SnakeGameAI:
         self.snake.insert(0, self.head)
         
         # 3. check if game over
-        reward = 0
+        reward = self.reward_step
         game_over = False
         if self.is_collision() or self.frame_iteration > 100*len(self.snake):
             game_over = True
-            reward = -10
+            reward = self.reward_death
             return reward, game_over, self.score
             
         # 4. place new food or just move
         if self.head == self.food:
             self.score += 1
-            reward = 30
+            reward = self.reward_food
             self._place_food()
         else:
             self.snake.pop()

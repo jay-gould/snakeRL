@@ -10,7 +10,7 @@ def test(model_name):
     record = 0
     agent = Agent()
     agent.model.load_state_dict(torch.load('./model/'+model_name))
-    game = SnakeGameAI(speed = 20)
+    game = SnakeGameAI(speed = 200)
     while agent.n_games < 100:
         #get old state
         state_old = agent.get_state(game)
@@ -40,4 +40,4 @@ def test(model_name):
     print(f'Final Variance: {variance}')
     
 if __name__ == '__main__':
-    test('model0.pt')
+    test('model1.pt')

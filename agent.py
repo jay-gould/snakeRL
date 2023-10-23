@@ -12,10 +12,10 @@ LR = 0.001
 
 class Agent:
 
-    def __init__(self):
+    def __init__(self, gamma = 0.9):
         self.n_games = 0
         self.epsilon = 0 #parameter to control randomness
-        self.gamma = 0.9 #discount rate
+        self.gamma = gamma #discount rate #0.9 for model0, 0.95 for model 1
         self.memory = deque(maxlen = MAXIMUM_MEMORY) #calls popleft is memory is full
 
         self.model = Linear_QNet(15, 3)
@@ -119,9 +119,9 @@ def train():
     plot_mean_scores = []
     total_score = 0
     record = 0
-    agent = Agent()
-    game = SnakeGameAI()
-    model_number = 0
+    agent = Agent(gamma = 0.95) #model0 gamma = 0.9 ## model1 gammma = 0.95
+    game = SnakeGameAI(w = 20*8, h = 20*8, speed = 600, reward_food= 10, reward_death= -10, reward_step= -0.1) #model0 default w and h, 30, -10, 0 ## model1 20*8,20*8, 10, -10, -0.1
+    model_number = 1
     while True:
         #get old state
         state_old = agent.get_state(game)

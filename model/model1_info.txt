@@ -1,0 +1,8 @@
+Parameters:
+gamma = 0.95
+screen size = 20*8, 20*8
+10, -10, -0.1 reward_food, reward_death, reward_step
+
+Results:
+mean score = 40
+variance = 181

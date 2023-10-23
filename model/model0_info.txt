@@ -1,0 +1,8 @@
+Parameters:
+gamma = 0.9
+default game screen size
+30, -10, 0 reward_food, reward_death, reward_step
+
+Results:
+Mean score = 21
+Variance = 120
